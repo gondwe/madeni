@@ -7,15 +7,89 @@ const path = require("path")
 
 module.exports = {
   content: [
-    "./js/**/*.js",
+    "./js/**/*.{vue,js}",
     "../lib/madeni_web.ex",
     "../lib/madeni_web/**/*.*ex"
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          '"Noto Sans"',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
+      },
       colors: {
-        brand: "#FD4F00",
-      }
+        'coolgray': {
+          '50': '#F3F4F6',
+          '100': '#D1D5DB',
+          '200': '#6B7280',
+          '300': '#374151',
+          '400': '#1F2937',
+          '500': '#111827',
+        },
+        'warmgray': {
+          '50': '#F6F6F3',
+          '100': '#F1F0ED',
+          '200': '#EDECE9',
+          '300': '#DEE1DA',
+          '400': '#D3D6CE',
+          '500': '#A9B1A9',
+        },
+        'emerald': {
+          '50': '#D1FAE5',
+          '100': '#A7F3D0',
+          '200': '#34D399',
+          '300': '#10B981',
+          '400': '#047857',
+          '500': '#1B3F31',
+          '600': '#21C19B'
+        },
+        'teal': {
+          '50': '#CCFBF1',
+          '100': '#99F6E4',
+          '200': '#5EEAD4',
+          '300': '#4EACB1',
+          '400': '#008C8E',
+          '500': '#134E4A',
+        },
+        'amber': {
+          '50': '#FCF6E0',
+          '100': '#FDE68A',
+          '200': '#FBBF24',
+          '300': '#F59E0B',
+          '400': '#D97706',
+          '500': '#92400E',
+        },
+        'red': {
+          '50': '#FEF2F2',
+          '100': '#FEE2E2',
+          '200': '#FCA5A5',
+          '300': '#EF4444',
+          '400': '#B91C1C',
+          '500': '#7F1D1D',
+        },
+        'mzoori-10': "#7F1D1D", // Auth form header
+        'mzoori-20': "#7F1D1D", // Dashboard sidebar
+        'mzoori-30': "#7F1D1D", // Profile pic placeholder
+        'mzoori-40': "#7F1D1D", // Editable table row Hover
+      },
+      screens: {
+        xs: '375px',
+        xxl: '1410px',
+      },
     },
   },
   plugins: [
@@ -25,15 +99,15 @@ module.exports = {
     //
     //     <div class="phx-click-loading:animate-ping">
     //
-    plugin(({addVariant}) => addVariant("phx-no-feedback", [".phx-no-feedback&", ".phx-no-feedback &"])),
-    plugin(({addVariant}) => addVariant("phx-click-loading", [".phx-click-loading&", ".phx-click-loading &"])),
-    plugin(({addVariant}) => addVariant("phx-submit-loading", [".phx-submit-loading&", ".phx-submit-loading &"])),
-    plugin(({addVariant}) => addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])),
+    plugin(({ addVariant }) => addVariant("phx-no-feedback", [".phx-no-feedback&", ".phx-no-feedback &"])),
+    plugin(({ addVariant }) => addVariant("phx-click-loading", [".phx-click-loading&", ".phx-click-loading &"])),
+    plugin(({ addVariant }) => addVariant("phx-submit-loading", [".phx-submit-loading&", ".phx-submit-loading &"])),
+    plugin(({ addVariant }) => addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])),
 
     // Embeds Heroicons (https://heroicons.com) into your app.css bundle
     // See your `CoreComponents.icon/1` for more information.
     //
-    plugin(function({matchComponents, theme}) {
+    plugin(function ({ matchComponents, theme }) {
       let iconsDir = path.join(__dirname, "../deps/heroicons/optimized")
       let values = {}
       let icons = [
@@ -45,11 +119,11 @@ module.exports = {
       icons.forEach(([suffix, dir]) => {
         fs.readdirSync(path.join(iconsDir, dir)).forEach(file => {
           let name = path.basename(file, ".svg") + suffix
-          values[name] = {name, fullPath: path.join(iconsDir, dir, file)}
+          values[name] = { name, fullPath: path.join(iconsDir, dir, file) }
         })
       })
       matchComponents({
-        "hero": ({name, fullPath}) => {
+        "hero": ({ name, fullPath }) => {
           let content = fs.readFileSync(fullPath).toString().replace(/\r?\n|\r/g, "")
           let size = theme("spacing.6")
           if (name.endsWith("-mini")) {
@@ -69,7 +143,7 @@ module.exports = {
             "height": size
           }
         }
-      }, {values})
+      }, { values })
     })
   ]
 }
