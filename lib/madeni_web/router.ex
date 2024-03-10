@@ -13,6 +13,10 @@ defmodule MadeniWeb.Router do
     plug :fetch_current_user
   end
 
+  pipeline :admin do
+    plug MadeniWeb.AdminPlug
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -48,16 +52,24 @@ defmodule MadeniWeb.Router do
   ## Authentication routes
 
   scope "/", MadeniWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
+    pipe_through [:browser]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
-    get "/users/log_in", UserSessionController, :new
-    post "/users/log_in", UserSessionController, :create
-    get "/users/reset_password", UserResetPasswordController, :new
-    post "/users/reset_password", UserResetPasswordController, :create
-    get "/users/reset_password/:token", UserResetPasswordController, :edit
-    put "/users/reset_password/:token", UserResetPasswordController, :update
+    scope "/users" do
+      pipe_through [:redirect_if_user_is_authenticated]
+      get "/register", UserRegistrationController, :new
+      post "/register", UserRegistrationController, :create
+      get "/log_in", UserSessionController, :new
+      post "/log_in", UserSessionController, :create
+      get "/reset_password", UserResetPasswordController, :new
+      post "/reset_password", UserResetPasswordController, :create
+      get "/reset_password/:token", UserResetPasswordController, :edit
+      put "/reset_password/:token", UserResetPasswordController, :update
+    end
+
+    scope "/admin" do
+      pipe_through [:admin]
+      get "/", AdminController, :index
+    end
   end
 
   scope "/", MadeniWeb do

@@ -15,9 +15,15 @@
 import { createApp } from 'vue'
 import Highcharts from 'highcharts'
 import HighchartsVue from 'highcharts-vue'
-import DashboardNewLayout from './vue/dashboard_new_layout.js'
+import DashboardLayout from './vue/dashboard_layout.js'
 
-createApp(DashboardNewLayout).mount('#app')
+app = createApp({
+  components: {
+    Highcharts,
+    HighchartsVue,
+    DashboardLayout
+  }
+}).mount('#app')
 //
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
@@ -47,7 +53,7 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
-export default {
-  Highcharts,
-  HighchartsVue
-}
+// export default {
+//   Highcharts,
+//   HighchartsVue
+// }

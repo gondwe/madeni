@@ -28,12 +28,19 @@ import {
 } from '@heroicons/vue/outline'
 import { SearchIcon } from '@heroicons/vue/solid'
 
-const navigation = [
+const adminNavigation = [
+  { name: 'Dashboard', href: '/#/home', icon: HomeIcon, current: true },
+  { name: 'Products', href: '#', icon: UsersIcon, current: false },
+  { name: 'Loans', href: '/#/my-users', icon: GiftIcon, current: false },
+  { name: 'Settings', href: '#', icon: UsersIcon, current: false },
+]
+
+const frontNavigation = [
   { name: 'Home', href: '/#/home', icon: HomeIcon, current: true },
   { name: 'Products', href: '/#/my-products', icon: GiftIcon, current: false },
   { name: 'Settings', href: '#', icon: UsersIcon, current: false },
-
 ]
+
 const userNavigation = [
   { name: 'My Profile', href: '/#/profile' },
   { name: 'Help & Feedback', href: '#' },
@@ -56,18 +63,32 @@ export default {
     XIcon,
   },
   props: {
-    'user': {
+    user: {
       type: Object,
       required: true
+    },
+    context: {
+      type: String,
+      required: true,
+      default: "user"
+    }
+  },
+  methods: {
+    navigation(ctx) {
+      return ctx == "user" ? this.frontNavigation : this.adminNavigation
     }
   },
   setup() {
     const sidebarOpen = ref(false)
 
     return {
-      navigation,
       userNavigation,
+      frontNavigation,
+      adminNavigation,
       sidebarOpen,
+      navigation: function (ctx) {
+        return ctx == "user" ? this.frontNavigation : this.adminNavigation
+      }
     }
   },
   template: `<div class="bg-coolgray-10 min-h-full">
@@ -87,11 +108,11 @@ export default {
             </div>
           </TransitionChild>
           <div class="flex-shrink-0 flex items-center px-4 text-center">
-            JABIZ
+            NICE LOGO
           </div>
           <div class="mt-5 flex-1 h-0 overflow-y-auto">
             <nav class="px-2 space-y-1">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-red-500 text-white' : 'text-white hover:no-underline hover:bg-red-400', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']">
+              <a v-for="item in navigation(this.context)" :key="item.name" :href="item.href" :class="[item.current ? 'bg-red-500 text-white' : 'text-white hover:no-underline hover:bg-red-400', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']">
                 <component :is="item.icon" class="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
                 {{ item.name }}
               </a>
@@ -110,11 +131,11 @@ export default {
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex flex-col flex-grow pt-5 bg-mzoori-20 overflow-y-auto">
       <div class="flex items-center flex-shrink-0 px-4 text-center">
-        JABIZ
+        NICE LOGO
       </div>
       <div class="mt-7 flex-1 flex flex-col">
         <nav class="flex-1 px-2 pb-4 space-y-5">
-          <template v-for="item in navigation" :key="item.name">
+          <template v-for="item in navigation(this.context)" :key="item.name">
             <div v-if="!item.children">
               <a :href="item.href" :class="[item.current ? 'bg-red-500 text-white' : 'text-white hover:no-underline hover:bg-red-400', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
                 <component :is="item.icon" class="mr-3 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
@@ -156,8 +177,11 @@ export default {
         <MenuAlt2Icon class="h-6 w-6" aria-hidden="true" />
       </button>
       <div class="flex-1 px-4 flex justify-end">
-        <div class="ml-4 flex items-center md:ml-6">
-          <!-- Profile dropdown -->
+      <div class="ml-4 flex items-center md:ml-6">
+      <!-- Profile dropdown -->
+          <a v-if="this.context!='admin'" href="/admin" class="rounded bg-red-800 px-3 p-1 mx-3 text-white ">
+          Admin Section
+          </a>
           <Menu as="div" class="ml-3 relative">
             <div>
               <MenuButton class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300">

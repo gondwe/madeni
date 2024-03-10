@@ -9,15 +9,21 @@
     <%= @inner_content %>
   </div>
 </main> --%>
-
 <div id="app">
-  <dashboard-new-layout user={Jason.encode!(@current_user)}></dashboard-new-layout>
-</div>
-
-<main class="px-4 py-20 sm:px-6 lg:px-8 md:flex md:pl-64">
-  <div class="mx-auto">
-    <.flash_group flash={@flash} />
-    <%= @inner_content %>
+  <div id="nav-layout" context={Map.get(assigns, :context)}>
+    <%= IO.inspect(Map.get(assigns, :context)) %>
+    <dashboard-layout
+      v-bind:user={Jason.encode!(@current_user)}
+      context={Map.get(assigns, :context)}
+    >
+    </dashboard-layout>
   </div>
-</main>
-<%!-- <DashboardNewLayout /> --%>
+
+  <main class="px-4 py-20 sm:px-6 lg:px-8 md:flex md:pl-64">
+    <div class="mx-auto">
+      <.flash_group flash={@flash} />
+      <%= @inner_content %>
+    </div>
+  </main>
+</div>
+<%!-- <DashboarduserLayout /> --%>
