@@ -10,8 +10,7 @@
   </div>
 </main> --%>
 <div id="app">
-  <div id="nav-layout" context={Map.get(assigns, :context)}>
-    <%= IO.inspect(Map.get(assigns, :context)) %>
+  <div :if={@conn.assigns.current_user} id="nav-layout" context={Map.get(assigns, :context)}>
     <dashboard-layout
       v-bind:user={Jason.encode!(@current_user)}
       context={Map.get(assigns, :context)}

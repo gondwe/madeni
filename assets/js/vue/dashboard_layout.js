@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import userNavigation from './user_navigation.js'
 import {
   Dialog,
   DialogOverlay,
@@ -25,14 +26,15 @@ import {
   MenuAlt2Icon,
   UsersIcon,
   XIcon,
-} from '@heroicons/vue/outline'
-import { SearchIcon } from '@heroicons/vue/solid'
+} from '../../node_modules/@heroicons/vue/outline'
+
+import { SearchIcon } from '../../node_modules/@heroicons/vue/solid'
 
 const adminNavigation = [
-  { name: 'Dashboard', href: '/#/home', icon: HomeIcon, current: true },
-  { name: 'Products', href: '#', icon: UsersIcon, current: false },
-  { name: 'Loans', href: '/#/my-users', icon: GiftIcon, current: false },
-  { name: 'Settings', href: '#', icon: UsersIcon, current: false },
+  { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
+  { name: 'Products', href: '/admin/products', icon: UsersIcon, current: false },
+  { name: 'Loans', href: '/admin/loans', icon: GiftIcon, current: false },
+  { name: 'Settings', href: '/admin/settings', icon: UsersIcon, current: false },
 ]
 
 const frontNavigation = [
@@ -41,11 +43,7 @@ const frontNavigation = [
   { name: 'Settings', href: '#', icon: UsersIcon, current: false },
 ]
 
-const userNavigation = [
-  { name: 'My Profile', href: '/#/profile' },
-  { name: 'Help & Feedback', href: '#' },
-  { name: 'Log out', href: '/#/login' },
-]
+
 
 export default {
   components: {
@@ -61,6 +59,7 @@ export default {
     MenuAlt2Icon,
     SearchIcon,
     XIcon,
+    userNavigation,
   },
   props: {
     user: {
@@ -82,7 +81,6 @@ export default {
     const sidebarOpen = ref(false)
 
     return {
-      userNavigation,
       frontNavigation,
       adminNavigation,
       sidebarOpen,
@@ -91,7 +89,7 @@ export default {
       }
     }
   },
-  template: `<div class="bg-coolgray-10 min-h-full">
+  template: `<div class="bg-coolgray-10 min-h-full ">
   <TransitionRoot as="template" :show="sidebarOpen">
     <Dialog as="div" class="fixed inset-0 flex z-40 md:hidden" @close="sidebarOpen = false">
       <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
@@ -107,8 +105,8 @@ export default {
               </button>
             </div>
           </TransitionChild>
-          <div class="flex-shrink-0 flex items-center px-4 text-center">
-            NICE LOGO
+          <div class="flex-shrink-0 flex items-center px-4 text-center text-gray-300 text-3xl">
+            X LOGO
           </div>
           <div class="mt-5 flex-1 h-0 overflow-y-auto">
             <nav class="px-2 space-y-1">
@@ -130,8 +128,8 @@ export default {
   <div class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex flex-col flex-grow pt-5 bg-mzoori-20 overflow-y-auto">
-      <div class="flex items-center flex-shrink-0 px-4 text-center">
-        NICE LOGO
+      <div class="flex items-center flex-shrink-0 px-4 text-center text-gray-300 text-3xl">
+        X LOGO
       </div>
       <div class="mt-7 flex-1 flex flex-col">
         <nav class="flex-1 px-2 pb-4 space-y-5">
@@ -177,32 +175,13 @@ export default {
         <MenuAlt2Icon class="h-6 w-6" aria-hidden="true" />
       </button>
       <div class="flex-1 px-4 flex justify-end">
-      <div class="ml-4 flex items-center md:ml-6">
       <!-- Profile dropdown -->
-          <a v-if="this.context!='admin'" href="/admin" class="rounded bg-red-800 px-3 p-1 mx-3 text-white ">
-          Admin Section
-          </a>
-          <Menu as="div" class="ml-3 relative">
-            <div>
-              <MenuButton class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300">
-                <span class="sr-only">Open user menu</span>
-                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-              </MenuButton>
-            </div>
-            <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-              <MenuItems class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                  <a :href="item.href" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 hover:no-underline']">{{ item.name }}</a>
-                </MenuItem>
-              </MenuItems>
-            </transition>
-          </Menu>
-        </div>
+      <userNavigation :context="context"></userNavigation>
       </div>
     </div>
 
     <main class="pb-12">
-      <router-view></router-view>
+      
     </main>
   </div>
 </div>`

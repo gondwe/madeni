@@ -13,17 +13,22 @@
 // them using a path starting with the package name:
 //
 import { createApp } from 'vue'
+// import router from './vue/router.js'
 import Highcharts from 'highcharts'
 import HighchartsVue from 'highcharts-vue'
 import DashboardLayout from './vue/dashboard_layout.js'
+import AdminUsers from './vue/users.vue.js'
 
 app = createApp({
   components: {
     Highcharts,
     HighchartsVue,
-    DashboardLayout
+    DashboardLayout,
+    AdminUsers
   }
-}).mount('#app')
+})
+  // .use(router)
+  .mount('#app')
 //
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
@@ -53,7 +58,3 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
-// export default {
-//   Highcharts,
-//   HighchartsVue
-// }
