@@ -1,0 +1,17 @@
+<.header>
+  Loan type <%= @loan_type.id %>
+  <:subtitle>This is a loan_type record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/admin/loan_types/#{@loan_type}/edit"}>
+      <.button>Edit loan_type</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @loan_type.name %></:item>
+  <:item title="Rate"><%= @loan_type.rate %></:item>
+  <:item title="Description"><%= @loan_type.description %></:item>
+</.list>
+
+<.back navigate={~p"/admin/loan_types"}>Back to loan_types</.back>

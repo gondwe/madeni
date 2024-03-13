@@ -1,0 +1,24 @@
+<.header>
+  Listing Loan products
+  <:actions>
+    <.link href={~p"/loan_products/new"}>
+      <.button>New Loan product</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="loan_products" rows={@loan_products} row_click={&JS.navigate(~p"/loan_products/#{&1}")}>
+  <:col :let={loan_product} label="Description"><%= loan_product.description %></:col>
+  <:col :let={loan_product} label="Interest rate"><%= loan_product.interest_rate %></:col>
+  <:action :let={loan_product}>
+    <div class="sr-only">
+      <.link navigate={~p"/loan_products/#{loan_product}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/loan_products/#{loan_product}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={loan_product}>
+    <.link href={~p"/loan_products/#{loan_product}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

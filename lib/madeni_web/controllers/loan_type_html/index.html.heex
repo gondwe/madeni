@@ -1,0 +1,25 @@
+<.header>
+  Listing Loan types
+  <:actions>
+    <.link href={~p"/admin/loan_types/new"}>
+      <.button>New Loan type</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="loan_types" rows={@loan_types} row_click={&JS.navigate(~p"/admin/loan_types/#{&1}")}>
+  <:col :let={loan_type} label="Name"><%= loan_type.name %></:col>
+  <:col :let={loan_type} label="Rate"><%= loan_type.rate %></:col>
+  <:col :let={loan_type} label="Description"><%= loan_type.description %></:col>
+  <:action :let={loan_type}>
+    <div class="sr-only">
+      <.link navigate={~p"/admin/loan_types/#{loan_type}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/admin/loan_types/#{loan_type}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={loan_type}>
+    <.link href={~p"/admin/loan_types/#{loan_type}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

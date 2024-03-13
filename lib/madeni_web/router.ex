@@ -71,6 +71,8 @@ defmodule MadeniWeb.Router do
       get "/", AdminController, :index
 
       resources "/products", ProductController
+      resources "/loan_types", LoanTypeController
+      resources "/loan_products", LoanProductController
     end
   end
 
