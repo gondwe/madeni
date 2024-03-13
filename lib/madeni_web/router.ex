@@ -73,6 +73,7 @@ defmodule MadeniWeb.Router do
       resources "/products", ProductController
       resources "/loan_types", LoanTypeController
       resources "/loan_products", LoanProductController
+      resources "/user_loans", UserLoanController
     end
   end
 

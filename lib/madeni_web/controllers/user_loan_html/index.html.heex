@@ -1,0 +1,22 @@
+<.header>
+  Listing User loans
+  <:actions>
+    <.link href={~p"/admin/user_loans/new"}>
+      <.button>New User loan</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="user_loans" rows={@user_loans} row_click={&JS.navigate(~p"/admin/user_loans/#{&1}")}>
+  <:action :let={user_loan}>
+    <div class="sr-only">
+      <.link navigate={~p"/admin/user_loans/#{user_loan}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/admin/user_loans/#{user_loan}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={user_loan}>
+    <.link href={~p"/admin/user_loans/#{user_loan}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

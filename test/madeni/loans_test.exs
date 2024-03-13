@@ -116,4 +116,56 @@ defmodule Madeni.LoansTest do
       assert %Ecto.Changeset{} = Loans.change_loan_product(loan_product)
     end
   end
+
+  describe "user_loans" do
+    alias Madeni.Loans.UserLoan
+
+    import Madeni.LoansFixtures
+
+    @invalid_attrs %{}
+
+    test "list_user_loans/0 returns all user_loans" do
+      user_loan = user_loan_fixture()
+      assert Loans.list_user_loans() == [user_loan]
+    end
+
+    test "get_user_loan!/1 returns the user_loan with given id" do
+      user_loan = user_loan_fixture()
+      assert Loans.get_user_loan!(user_loan.id) == user_loan
+    end
+
+    test "create_user_loan/1 with valid data creates a user_loan" do
+      valid_attrs = %{}
+
+      assert {:ok, %UserLoan{} = user_loan} = Loans.create_user_loan(valid_attrs)
+    end
+
+    test "create_user_loan/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Loans.create_user_loan(@invalid_attrs)
+    end
+
+    test "update_user_loan/2 with valid data updates the user_loan" do
+      user_loan = user_loan_fixture()
+      update_attrs = %{}
+
+      assert {:ok, %UserLoan{} = user_loan} = Loans.update_user_loan(user_loan, update_attrs)
+    end
+
+    test "update_user_loan/2 with invalid data returns error changeset" do
+      user_loan = user_loan_fixture()
+      assert {:error, %Ecto.Changeset{}} = Loans.update_user_loan(user_loan, @invalid_attrs)
+      assert user_loan == Loans.get_user_loan!(user_loan.id)
+    end
+
+    test "delete_user_loan/1 deletes the user_loan" do
+      user_loan = user_loan_fixture()
+      assert {:ok, %UserLoan{}} = Loans.delete_user_loan(user_loan)
+      assert_raise Ecto.NoResultsError, fn -> Loans.get_user_loan!(user_loan.id) end
+    end
+
+    test "change_user_loan/1 returns a user_loan changeset" do
+      user_loan = user_loan_fixture()
+      assert %Ecto.Changeset{} = Loans.change_user_loan(user_loan)
+    end
+  end
 end

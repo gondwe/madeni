@@ -19,7 +19,7 @@ defmodule MadeniWeb.LoanProductController do
       {:ok, loan_product} ->
         conn
         |> put_flash(:info, "Loan product created successfully.")
-        |> redirect(to: ~p"/loan_products/#{loan_product}")
+        |> redirect(to: ~p"/admin/loan_products/#{loan_product}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
@@ -44,7 +44,7 @@ defmodule MadeniWeb.LoanProductController do
       {:ok, loan_product} ->
         conn
         |> put_flash(:info, "Loan product updated successfully.")
-        |> redirect(to: ~p"/loan_products/#{loan_product}")
+        |> redirect(to: ~p"/admin/loan_products/#{loan_product}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :edit, loan_product: loan_product, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule MadeniWeb.LoanProductController do
 
     conn
     |> put_flash(:info, "Loan product deleted successfully.")
-    |> redirect(to: ~p"/loan_products")
+    |> redirect(to: ~p"/admin/loan_products")
   end
 end

@@ -1,0 +1,13 @@
+<.header>
+  User loan <%= @user_loan.id %>
+  <:subtitle>This is a user_loan record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/admin/user_loans/#{@user_loan}/edit"}>
+      <.button>Edit user_loan</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list></.list>
+
+<.back navigate={~p"/admin/user_loans"}>Back to user_loans</.back>

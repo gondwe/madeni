@@ -2,7 +2,7 @@
   Loan product <%= @loan_product.id %>
   <:subtitle>This is a loan_product record from your database.</:subtitle>
   <:actions>
-    <.link href={~p"/loan_products/#{@loan_product}/edit"}>
+    <.link href={~p"/admin/loan_products/#{@loan_product}/edit"}>
       <.button>Edit loan_product</.button>
     </.link>
   </:actions>
@@ -13,4 +13,4 @@
   <:item title="Interest rate"><%= @loan_product.interest_rate %></:item>
 </.list>
 
-<.back navigate={~p"/loan_products"}>Back to loan_products</.back>
+<.back navigate={~p"/admin/loan_products"}>Back to loan_products</.back>

@@ -34,4 +34,18 @@ defmodule Madeni.LoansFixtures do
 
     loan_product
   end
+
+  @doc """
+  Generate a user_loan.
+  """
+  def user_loan_fixture(attrs \\ %{}) do
+    {:ok, user_loan} =
+      attrs
+      |> Enum.into(%{
+
+      })
+      |> Madeni.Loans.create_user_loan()
+
+    user_loan
+  end
 end

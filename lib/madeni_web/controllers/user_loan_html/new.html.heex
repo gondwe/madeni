@@ -1,0 +1,8 @@
+<.header>
+  New User loan
+  <:subtitle>Use this form to manage user_loan records in your database.</:subtitle>
+</.header>
+
+<.user_loan_form changeset={@changeset} action={~p"/admin/user_loans"} />
+
+<.back navigate={~p"/admin/user_loans"}>Back to user_loans</.back>

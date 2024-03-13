@@ -197,4 +197,100 @@ defmodule Madeni.Loans do
   def change_loan_product(%LoanProduct{} = loan_product, attrs \\ %{}) do
     LoanProduct.changeset(loan_product, attrs)
   end
+
+  alias Madeni.Loans.UserLoan
+
+  @doc """
+  Returns the list of user_loans.
+
+  ## Examples
+
+      iex> list_user_loans()
+      [%UserLoan{}, ...]
+
+  """
+  def list_user_loans do
+    Repo.all(UserLoan)
+  end
+
+  @doc """
+  Gets a single user_loan.
+
+  Raises `Ecto.NoResultsError` if the User loan does not exist.
+
+  ## Examples
+
+      iex> get_user_loan!(123)
+      %UserLoan{}
+
+      iex> get_user_loan!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_loan!(id), do: Repo.get!(UserLoan, id)
+
+  @doc """
+  Creates a user_loan.
+
+  ## Examples
+
+      iex> create_user_loan(%{field: value})
+      {:ok, %UserLoan{}}
+
+      iex> create_user_loan(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_user_loan(attrs \\ %{}) do
+    %UserLoan{}
+    |> UserLoan.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a user_loan.
+
+  ## Examples
+
+      iex> update_user_loan(user_loan, %{field: new_value})
+      {:ok, %UserLoan{}}
+
+      iex> update_user_loan(user_loan, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user_loan(%UserLoan{} = user_loan, attrs) do
+    user_loan
+    |> UserLoan.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a user_loan.
+
+  ## Examples
+
+      iex> delete_user_loan(user_loan)
+      {:ok, %UserLoan{}}
+
+      iex> delete_user_loan(user_loan)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_user_loan(%UserLoan{} = user_loan) do
+    Repo.delete(user_loan)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user_loan changes.
+
+  ## Examples
+
+      iex> change_user_loan(user_loan)
+      %Ecto.Changeset{data: %UserLoan{}}
+
+  """
+  def change_user_loan(%UserLoan{} = user_loan, attrs \\ %{}) do
+    UserLoan.changeset(user_loan, attrs)
+  end
 end
