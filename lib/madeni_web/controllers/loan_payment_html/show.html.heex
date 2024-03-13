@@ -1,0 +1,15 @@
+<.header>
+  Loan payment <%= @loan_payment.id %>
+  <:subtitle>This is a loan_payment record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/loan_payments/#{@loan_payment}/edit"}>
+      <.button>Edit loan_payment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Amount"><%= @loan_payment.amount %></:item>
+</.list>
+
+<.back navigate={~p"/loan_payments"}>Back to loan_payments</.back>

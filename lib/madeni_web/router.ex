@@ -74,6 +74,10 @@ defmodule MadeniWeb.Router do
       resources "/loan_types", LoanTypeController
       resources "/loan_products", LoanProductController
       resources "/user_loans", UserLoanController
+
+      # payments
+      resources "/payment_methods", PaymentMethodController
+      resources "/loan_payments", LoanPaymentController
     end
   end
 
@@ -83,6 +87,9 @@ defmodule MadeniWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    # Repayments
+    resources "/loan_payments", LoanPaymentController
   end
 
   scope "/", MadeniWeb do

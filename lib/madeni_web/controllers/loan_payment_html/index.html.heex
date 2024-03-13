@@ -1,0 +1,23 @@
+<.header>
+  Listing Loan payments
+  <:actions>
+    <.link href={~p"/loan_payments/new"}>
+      <.button>New Loan payment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="loan_payments" rows={@loan_payments} row_click={&JS.navigate(~p"/loan_payments/#{&1}")}>
+  <:col :let={loan_payment} label="Amount"><%= loan_payment.amount %></:col>
+  <:action :let={loan_payment}>
+    <div class="sr-only">
+      <.link navigate={~p"/loan_payments/#{loan_payment}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/loan_payments/#{loan_payment}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={loan_payment}>
+    <.link href={~p"/loan_payments/#{loan_payment}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

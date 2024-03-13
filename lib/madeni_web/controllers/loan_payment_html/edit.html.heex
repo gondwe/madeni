@@ -1,0 +1,8 @@
+<.header>
+  Edit Loan payment <%= @loan_payment.id %>
+  <:subtitle>Use this form to manage loan_payment records in your database.</:subtitle>
+</.header>
+
+<.loan_payment_form changeset={@changeset} action={~p"/loan_payments/#{@loan_payment}"} />
+
+<.back navigate={~p"/loan_payments"}>Back to loan_payments</.back>

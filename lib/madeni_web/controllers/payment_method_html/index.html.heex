@@ -1,0 +1,32 @@
+<.header>
+  Listing Payment methods
+  <:actions>
+    <.link href={~p"/admin/payment_methods/new"}>
+      <.button>New Payment method</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="payment_methods"
+  rows={@payment_methods}
+  row_click={&JS.navigate(~p"/admin/payment_methods/#{&1}")}
+>
+  <:col :let={payment_method} label="Name"><%= payment_method.name %></:col>
+  <:col :let={payment_method} label="Active"><%= payment_method.active %></:col>
+  <:action :let={payment_method}>
+    <div class="sr-only">
+      <.link navigate={~p"/admin/payment_methods/#{payment_method}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/admin/payment_methods/#{payment_method}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={payment_method}>
+    <.link
+      href={~p"/admin/payment_methods/#{payment_method}"}
+      method="delete"
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>

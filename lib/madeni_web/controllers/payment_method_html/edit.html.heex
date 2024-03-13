@@ -1,0 +1,11 @@
+<.header>
+  Edit Payment method <%= @payment_method.id %>
+  <:subtitle>Use this form to manage payment_method records in your database.</:subtitle>
+</.header>
+
+<.payment_method_form
+  changeset={@changeset}
+  action={~p"/admin/payment_methods/#{@payment_method}"}
+/>
+
+<.back navigate={~p"/admin/payment_methods"}>Back to payment_methods</.back>
