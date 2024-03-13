@@ -49,13 +49,13 @@ module.exports = {
           '500': '#A9B1A9',
         },
         'emerald': {
-          '50': '#12E382',
-          '100': '#12E382',
-          '200': '#12E382',
-          '300': '#12E382',
-          '400': '#12E382',
-          '500': '#12E382',
-          '600': '#12E382'
+          '50': '#000000',
+          '100': '#000000',
+          '200': '#000000',
+          '300': '#000000',
+          '400': '#000000',
+          '500': '#000000',
+          '600': '#000000'
         },
         'teal': {
           '50': '#CCFBF1',
@@ -81,10 +81,10 @@ module.exports = {
           '400': '#B91C1C',
           '500': '#3E39D1',
         },
-        'mzoori-10': "#3E39D1", // Auth form header
-        'mzoori-20': "#3E39D1", // Dashboard sidebar
-        'mzoori-30': "#3E39D1", // Profile pic placeholder
-        'mzoori-40': "#3E39D1", // Editable table row Hover
+        'mzoori-10': "#000000", // Auth form header
+        'mzoori-20': "#000000", // Dashboard sidebar
+        'mzoori-30': "#000000", // Profile pic placeholder
+        'mzoori-40': "#000000", // Editable table row Hover
       },
       screens: {
         xs: '375px',

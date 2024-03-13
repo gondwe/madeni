@@ -1,4 +1,8 @@
 defmodule MadeniWeb.Router do
+  @moduledoc """
+  The router for the MadeniWeb application.
+  """
+
   use MadeniWeb, :router
 
   import MadeniWeb.UserAuth
@@ -15,6 +19,10 @@ defmodule MadeniWeb.Router do
 
   pipeline :admin do
     plug MadeniWeb.AdminPlug
+  end
+
+  pipeline :ext do
+    plug MadeniWeb.ExtPlug
   end
 
   pipeline :api do
@@ -55,7 +63,7 @@ defmodule MadeniWeb.Router do
     pipe_through [:browser]
 
     scope "/users" do
-      pipe_through [:redirect_if_user_is_authenticated]
+      pipe_through [:redirect_if_user_is_authenticated, :ext]
       get "/register", UserRegistrationController, :new
       post "/register", UserRegistrationController, :create
       get "/log_in", UserSessionController, :new
@@ -88,12 +96,15 @@ defmodule MadeniWeb.Router do
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
+    # Loans
+    resources "/loan_products", LoanProductController
+
     # Repayments
     resources "/loan_payments", LoanPaymentController
   end
 
   scope "/", MadeniWeb do
-    pipe_through [:browser]
+    pipe_through [:browser, :ext]
 
     delete "/users/log_out", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new

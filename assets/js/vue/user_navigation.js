@@ -14,9 +14,9 @@ import {
 import { useRouter } from 'vue-router'
 
 const userNavigation = [
-    { name: 'My Profile', href: '#/profile' },
+    { name: 'My Profile', href: '/users/settings' },
     { name: 'Help & Feedback', href: '#/help' },
-    { name: 'Log out', href: '#/logout' },
+    // { name: 'Log out', href: '#/logout' },
 ]
 
 export default {
@@ -41,7 +41,7 @@ export default {
         http_req(url) {
             console.log(url);
             // check if the url is a logout
-            if (url == "#/logout") {
+            if (url == "logout") {
                 const router = useRouter()
                 fetch('/users/log_out', {
                     method: 'DELETE',
@@ -63,7 +63,7 @@ export default {
     },
     template: `
     <div class="ml-4 flex items-center md:ml-6">
-        <a v-if="this.context!='admin'" href="/admin" class="rounded bg-red-800 px-3 p-1 mx-3 text-white ">
+        <a v-if="this.context!='admin'" href="/admin" class="rounded-lg bg-green-800 px-3 p-1 mx-3 text-white">
         Admin Section
         </a>
         <Menu as="div" class="ml-3 relative">
@@ -76,8 +76,9 @@ export default {
           <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
             <MenuItems class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
               <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                <button @click="this.http_req(item.href)" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 hover:no-underline w-full']">{{ item.name }}</button>
+                <a :href="item.href" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 hover:no-underline w-full']">{{ item.name }}</button>
               </MenuItem>
+                <button @click="this.http_req('logout')" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 hover:no-underline w-full text-left']">Log Out</button>
             </MenuItems>
           </transition>
         </Menu>

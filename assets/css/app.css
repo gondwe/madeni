@@ -206,5 +206,9 @@
         @apply h-auto;
     }
 
+    #flash-info {
+        @apply text-white bg-green-700 ring-offset-0 ring-green-700;
+    }
+
 
 }

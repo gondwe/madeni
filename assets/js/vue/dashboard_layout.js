@@ -33,14 +33,18 @@ import { SearchIcon } from '../../node_modules/@heroicons/vue/solid'
 const adminNavigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
   { name: 'Products', href: '/admin/products', icon: UsersIcon, current: false },
-  { name: 'Loans', href: '/admin/loans', icon: GiftIcon, current: false },
-  { name: 'Settings', href: '/admin/settings', icon: UsersIcon, current: false },
+  { name: 'Loans', href: '/admin/user_loans', icon: GiftIcon, current: false },
+  { name: 'Settings', href: '/users/settings', icon: UsersIcon, current: false },
+  { name: 'Loan Types', href: '/admin/loan_types', icon: UsersIcon, current: false },
+  { name: 'Payment Methods', href: '/admin/payment_methods', icon: UsersIcon, current: false },
+  { name: 'Loan Products', href: '/admin/loan_products', icon: UsersIcon, current: false },
+  { name: 'Repayments', href: '/admin/loan_payments', icon: UsersIcon, current: false },
 ]
 
 const frontNavigation = [
   { name: 'Home', href: '/#/home', icon: HomeIcon, current: true },
-  { name: 'Products', href: '/#/my-products', icon: GiftIcon, current: false },
-  { name: 'Settings', href: '#', icon: UsersIcon, current: false },
+  { name: 'Products', href: '/loan_products', icon: GiftIcon, current: false },
+  { name: 'Settings', href: '/users/settings', icon: UsersIcon, current: false },
 ]
 
 
