@@ -404,7 +404,7 @@ export default {
                     <div>
                       <button
                         type="button"
-                        class="text-gray-400 hover:text-gray-900"
+                        class="btn text-gray-400 hover:text-gray-900"
                         @click="addUserModal = false"
                       >
                         <svg

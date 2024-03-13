@@ -49,13 +49,13 @@ module.exports = {
           '500': '#A9B1A9',
         },
         'emerald': {
-          '50': '#D1FAE5',
-          '100': '#A7F3D0',
-          '200': '#34D399',
-          '300': '#10B981',
-          '400': '#047857',
-          '500': '#1B3F31',
-          '600': '#21C19B'
+          '50': '#12E382',
+          '100': '#12E382',
+          '200': '#12E382',
+          '300': '#12E382',
+          '400': '#12E382',
+          '500': '#12E382',
+          '600': '#12E382'
         },
         'teal': {
           '50': '#CCFBF1',
@@ -79,12 +79,12 @@ module.exports = {
           '200': '#FCA5A5',
           '300': '#EF4444',
           '400': '#B91C1C',
-          '500': '#7F1D1D',
+          '500': '#3E39D1',
         },
-        'mzoori-10': "#7F1D1D", // Auth form header
-        'mzoori-20': "#7F1D1D", // Dashboard sidebar
-        'mzoori-30': "#7F1D1D", // Profile pic placeholder
-        'mzoori-40': "#7F1D1D", // Editable table row Hover
+        'mzoori-10': "#3E39D1", // Auth form header
+        'mzoori-20': "#3E39D1", // Dashboard sidebar
+        'mzoori-30': "#3E39D1", // Profile pic placeholder
+        'mzoori-40': "#3E39D1", // Editable table row Hover
       },
       screens: {
         xs: '375px',

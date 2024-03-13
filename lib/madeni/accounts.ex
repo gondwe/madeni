@@ -350,4 +350,9 @@ defmodule Madeni.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  # all users
+  def list_users do
+    Repo.all(User)
+  end
 end

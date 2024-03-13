@@ -69,6 +69,8 @@ defmodule MadeniWeb.Router do
     scope "/admin" do
       pipe_through [:admin]
       get "/", AdminController, :index
+
+      resources "/products", ProductController
     end
   end
 
