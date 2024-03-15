@@ -6,7 +6,10 @@
     <div class="sm:flex sm:items-center sm:justify-between">
       <div>
         <p class="text-xl font-bold text-gray-900 sm:text-2xl">
-          Hello <span class="text-gray-400"><%= @current_user.email %></span>
+          Hello
+          <span class="text-gray-400">
+            <%= "#{@current_user.first_name} #{@current_user.last_name}" %>
+          </span>
         </p>
         <p class="text-sm font-medium text-gray-400">Here is a summary of your products</p>
       </div>

@@ -1,16 +1,22 @@
 <.header>
-  Payment method <%= @payment_method.id %>
-  <:subtitle>This is a payment_method record from your database.</:subtitle>
+  <%= @payment_method.name %>
+  <:subtitle>This is a payment_method in the system.</:subtitle>
   <:actions>
     <.link href={~p"/admin/payment_methods/#{@payment_method}/edit"}>
-      <.button>Edit payment_method</.button>
+      <.button>Edit</.button>
     </.link>
   </:actions>
 </.header>
 
 <.list>
   <:item title="Name"><%= @payment_method.name %></:item>
-  <:item title="Active"><%= @payment_method.active %></:item>
+  <:item title="Active">
+    <%= if @payment_method.active do %>
+      YES
+    <% else %>
+      NO
+    <% end %>
+  </:item>
 </.list>
 
 <.back navigate={~p"/admin/payment_methods"}>Back to payment_methods</.back>

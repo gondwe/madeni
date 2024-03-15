@@ -1,6 +1,6 @@
 <.header>
-  Listing Loan products
-  <:actions>
+  Loan Products
+  <:actions :if={admin_context?(assigns)}>
     <.link href={~p"/admin/loan_products/new"}>
       <.button>New Loan product</.button>
     </.link>
@@ -13,6 +13,10 @@
   row_click={&JS.navigate(~p"/admin/loan_products/#{&1}")}
 >
   <:col :let={loan_product} label="Description"><%= loan_product.description %></:col>
+  <:col :let={loan_product} label="Product"><%= loan_product.product.name %></:col>
+  <:col :let={loan_product} label="Loan Type">
+    <%= "#{loan_product.loan_type.name} (#{loan_product.loan_type.rate}%)" %>
+  </:col>
   <:col :let={loan_product} label="Interest rate"><%= loan_product.interest_rate %></:col>
   <:action :let={loan_product}>
     <div class="sr-only">

@@ -2,6 +2,23 @@
   <.error :if={@changeset.action}>
     Oops, something went wrong! Please check the errors below.
   </.error>
+  <.input
+    field={f[:loan_type_id]}
+    type="select"
+    label="Loan Type"
+    options={loan_types_for_select()}
+    required
+  >
+  </.input>
+  <.input
+    field={f[:product_id]}
+    type="select"
+    label="Product"
+    options={products_for_select()}
+    required
+  >
+  </.input>
+
   <.input field={f[:description]} type="text" label="Description" />
   <.input field={f[:interest_rate]} type="number" label="Interest rate" step="any" />
   <:actions>

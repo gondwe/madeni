@@ -92,6 +92,8 @@ defmodule MadeniWeb do
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
+
+      import MadeniWeb.Shared
     end
   end
 

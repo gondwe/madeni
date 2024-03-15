@@ -1,4 +1,5 @@
-<div class="mx-auto max-w-sm">
+<div class="mx-auto max-w-sm pb-5">
+  <.logo-section class="mx-auto mb-5" />
   <.header class="text-center">
     Register for an account
     <:subtitle>
@@ -16,7 +17,28 @@
     </.error>
 
     <.input field={f[:email]} type="email" label="Email" required />
+    <.input field={f[:id_number]} type="number" label="Natioal ID Number" required />
     <.input field={f[:password]} type="password" label="Password" required />
+
+    <%!-- user data --%>
+    <.input field={f[:first_name]} label="First name" required />
+    <.input field={f[:last_name]} label="Last name" required />
+    <.input
+      field={f[:phone_number]}
+      type="number"
+      label="Phone number"
+      placeholder="254700000000"
+      required
+    />
+
+    <.input
+      field={f[:gender]}
+      type="select"
+      label="Gender"
+      options={[Male: "male", Female: "female", Other: "other"]}
+      required
+    >
+    </.input>
 
     <:actions>
       <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>

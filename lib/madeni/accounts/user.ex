@@ -2,13 +2,20 @@ defmodule Madeni.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @derive {Jason.Encoder, only: [:id, :email, :confirmed_at, :inserted_at, :updated_at]}
+  @derive {Jason.Encoder, except: [:__meta__]}
 
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+
+    # user data
+    field :first_name, :string
+    field :last_name, :string
+    field :id_number, :string
+    field :phone_number, :string
+    field :gender, :string
 
     timestamps(type: :utc_datetime)
   end
@@ -38,12 +45,22 @@ defmodule Madeni.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [
+      :email,
+      :password,
+      :first_name,
+      :last_name,
+      :id_number,
+      :phone_number,
+      :gender
+    ])
+    |> validate_required([:first_name, :last_name, :id_number, :phone_number, :gender])
+    |> validate_inclusion(:gender, ["male", "female", "other"])
     |> validate_email(opts)
     |> validate_password(opts)
   end
 
-  defp validate_email(changeset, opts) do
+  def validate_email(changeset, opts) do
     changeset
     |> validate_required([:email])
     |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
@@ -51,7 +68,7 @@ defmodule Madeni.Accounts.User do
     |> maybe_validate_unique_email(opts)
   end
 
-  defp validate_password(changeset, opts) do
+  def validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
     |> validate_length(:password, min: 12, max: 72)

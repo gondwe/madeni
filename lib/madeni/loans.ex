@@ -114,7 +114,7 @@ defmodule Madeni.Loans do
 
   """
   def list_loan_products do
-    Repo.all(LoanProduct)
+    Repo.all(LoanProduct.loan_product_query())
   end
 
   @doc """
@@ -131,7 +131,9 @@ defmodule Madeni.Loans do
       ** (Ecto.NoResultsError)
 
   """
-  def get_loan_product!(id), do: Repo.get!(LoanProduct, id)
+  def get_loan_product!(id) do
+    Repo.one(from(lp in LoanProduct.loan_product_query(), where: lp.id == ^id))
+  end
 
   @doc """
   Creates a loan_product.

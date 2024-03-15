@@ -1,6 +1,6 @@
 <.header>
-  Loan product <%= @loan_product.id %>
-  <:subtitle>This is a loan_product record from your database.</:subtitle>
+  <%= @loan_product.description %>
+  <:subtitle>This is a loan product in the system.</:subtitle>
   <:actions>
     <.link href={~p"/admin/loan_products/#{@loan_product}/edit"}>
       <.button>Edit loan_product</.button>
@@ -9,8 +9,10 @@
 </.header>
 
 <.list>
+  <:item title="Product"><%= @loan_product.product.name %></:item>
+  <:item title="Loan Type"><%= @loan_product.loan_type.name %></:item>
+  <:item title="Interest Rate"><%= @loan_product.interest_rate %>%</:item>
   <:item title="Description"><%= @loan_product.description %></:item>
-  <:item title="Interest rate"><%= @loan_product.interest_rate %></:item>
 </.list>
 
 <.back navigate={~p"/admin/loan_products"}>Back to loan_products</.back>

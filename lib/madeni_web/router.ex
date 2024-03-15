@@ -78,6 +78,10 @@ defmodule MadeniWeb.Router do
       pipe_through [:admin]
       get "/", AdminController, :index
 
+      # users
+      resources "/users", UserController
+
+      # loans
       resources "/products", ProductController
       resources "/loan_types", LoanTypeController
       resources "/loan_products", LoanProductController

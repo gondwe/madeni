@@ -18,17 +18,30 @@
     </dashboard-layout>
   </div>
 
-  <main :if={Map.get(assigns, :context) == "ext"} class="lg:px-8 md:flex md:pl-64 sm:px-6">
-    <div class="mx-auto mt-10">
+  <main :if={Map.get(assigns, :context) == "ext"} class="">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
       <.flash_group flash={@flash} />
-      <%= @inner_content %>
+
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 hidden sm:block">
+        <%= @inner_content %>
+      </div>
+
+      <div class="block sm:hidden mx-auto w-full bg-white p-3 border-t border-b border-gray-300">
+        <%= @inner_content %>
+      </div>
     </div>
   </main>
   <main :if={Map.get(assigns, :context) != "ext"} class="lg:px-8 md:flex md:pl-64 sm:px-6">
-    <div class="md:ml-64">
+    <div class="md:ml-64 w-full px-3">
       <.flash_group flash={@flash} />
-      <%= @inner_content %>
+
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 hidden sm:block">
+        <%= @inner_content %>
+      </div>
+
+      <div class="block sm:hidden mx-auto w-full bg-white p-3 border-t border-b border-gray-300">
+        <%= @inner_content %>
+      </div>
     </div>
   </main>
 </div>
-<%!-- <DashboarduserLayout /> --%>

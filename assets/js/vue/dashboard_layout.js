@@ -34,11 +34,11 @@ const adminNavigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
   { name: 'Products', href: '/admin/products', icon: UsersIcon, current: false },
   { name: 'Loans', href: '/admin/user_loans', icon: GiftIcon, current: false },
-  { name: 'Settings', href: '/users/settings', icon: UsersIcon, current: false },
   { name: 'Loan Types', href: '/admin/loan_types', icon: UsersIcon, current: false },
   { name: 'Payment Methods', href: '/admin/payment_methods', icon: UsersIcon, current: false },
   { name: 'Loan Products', href: '/admin/loan_products', icon: UsersIcon, current: false },
   { name: 'Repayments', href: '/admin/loan_payments', icon: UsersIcon, current: false },
+  { name: 'Users', href: '/admin/users', icon: UsersIcon, current: false },
 ]
 
 const frontNavigation = [
@@ -176,11 +176,12 @@ export default {
     <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
       <button type="button" class="px-4 border-r border-gray-200 text-gray-500 hover:no-underline focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300 md:hidden" @click="sidebarOpen = true">
         <span class="sr-only">Open sidebar</span>
-        <MenuAlt2Icon class="h-6 w-6" aria-hidden="true" />
+        <span class="hero-arrow-left-solid">Open sidebar</span>
+        <MenuAlt2Icon class="h-6 w-6" aria-hidden="false" />
       </button>
       <div class="flex-1 px-4 flex justify-end">
       <!-- Profile dropdown -->
-      <userNavigation :context="context"></userNavigation>
+      <userNavigation :context="context" :user="user"></userNavigation>
       </div>
     </div>
 
